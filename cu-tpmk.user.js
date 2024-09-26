@@ -21,7 +21,8 @@
         links.forEach(link => {
             if (link.href.includes('/learn/courses/') && link.href.includes('/longreads/') && !link.href.includes('view')) {
                 link.href = convertLink(link.href);
-                link.onclick = null; 
+                let nl = link.cloneNode(true); // даже не спрашивайте про этот костыль
+                link.parentNode.replaceChild(nl, link); // спасибо 
             }
         });
     }, 500)

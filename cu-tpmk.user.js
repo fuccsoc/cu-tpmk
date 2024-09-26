@@ -23,5 +23,5 @@
                 link.href = convertLink(link.href);
             }
         });
-    }, 10000)
+    }, 500)
 })();

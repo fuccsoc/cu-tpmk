@@ -21,6 +21,7 @@
         links.forEach(link => {
             if (link.href.includes('/learn/courses/') && link.href.includes('/longreads/') && !link.href.includes('view')) {
                 link.href = convertLink(link.href);
+                link.onclick = null; 
             }
         });
     }, 500)

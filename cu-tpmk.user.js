@@ -25,5 +25,26 @@
                 link.parentNode.replaceChild(nl, link); // спасибо 
             }
         });
+        () => {
+            const idMatch = currentUrl.match(/\/student-performance\/(\d+)/);
+            if (idMatch && idMatch[1]) {
+                const id = idMatch[1];
+        
+                const header = document.querySelector('h1');
+                if (header) {
+                    const link = document.createElement('a');
+                    link.href = `https://my.centraluniversity.ru/learn/courses/view/${id}`;
+                    link.textContent = header.textContent; // Keep the original header text
+        
+                    // Replace the h1 content with the link
+                    header.innerHTML = ''; 
+                    header.appendChild(link);
+                }
+            }
+        }
     }, 500)
+
+    const currentUrl = window.location.href;
+
+   
 })();

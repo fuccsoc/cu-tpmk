@@ -12,18 +12,16 @@
 (function() {
     'use strict';
 
-    // Function to convert the link
     function convertLink(link) {
         return link.replace('/courses/', '/courses/view/');
     }
 
-    // Get all the links on the page
-    const links = document.querySelectorAll('a');
-
-    // Iterate through the links and convert the matching ones
-    links.forEach(link => {
-        if (link.href.includes('/learn/courses/') && link.href.includes('/longreads/')) {
-            link.href = convertLink(link.href);
-        }
-    });
+    setInterval(() => {
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            if (link.href.includes('/learn/courses/') && link.href.includes('/longreads/') && !link.href.includes('view')) {
+                link.href = convertLink(link.href);
+            }
+        });
+    }, 10000)
 })();

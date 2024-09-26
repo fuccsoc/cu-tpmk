@@ -16,16 +16,20 @@
         return link.replace('/courses/', '/courses/view/');
     }
 
-    setInterval(() => {
+    const interval = setInterval(() => {
+        // Чиним линки
         const links = document.querySelectorAll('a');
         links.forEach(link => {
             if (link.href.includes('/learn/courses/') && link.href.includes('/longreads/') && !link.href.includes('view')) {
+                clearInterval(interval);
                 link.href = convertLink(link.href);
                 let nl = link.cloneNode(true); // даже не спрашивайте про этот костыль
                 link.parentNode.replaceChild(nl, link); // спасибо 
             }
         });
-        () => {
+        // Добавляем ссылку на страницу
+        (() => {
+            const currentUrl = window.location.href;
             const idMatch = currentUrl.match(/\/student-performance\/(\d+)/);
             if (idMatch && idMatch[1]) {
                 const id = idMatch[1];
@@ -41,10 +45,9 @@
                     header.appendChild(link);
                 }
             }
-        }
+        })()
     }, 500)
 
-    const currentUrl = window.location.href;
 
    
 })();
